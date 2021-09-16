@@ -1,12 +1,12 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <div :class="{'fixed-header':fixedHeader}">
+      <navbar />
+      <tags-view v-if="needTagsView" />
+    </div>
     <div :class="{hasTagsView:needTagsView}" class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-        <tags-view v-if="needTagsView" />
-      </div>
+      <sidebar class="sidebar-container" />
       <app-main />
       <right-panel v-if="showSettings">
         <settings />
@@ -61,6 +61,10 @@ export default {
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
 
+  .main-container{
+    display: flex;
+  }
+
   .app-wrapper {
     @include clearfix;
     position: relative;
@@ -88,7 +92,8 @@ export default {
     top: 0;
     right: 0;
     z-index: 9;
-    width: calc(100% - #{$sideBarWidth});
+    // width: calc(100% - #{$sideBarWidth});
+    width: 100%;
     transition: width 0.28s;
   }
 
