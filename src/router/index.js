@@ -184,6 +184,19 @@ export const asyncRoutes = [
     ]
   },
 
+  {
+    path: '/platform',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/platform/index'),
+        name: 'Platform',
+        meta: { title: '平台管理', noCache: true }
+      }
+    ]
+  },
+
   /** when your routing map is too long, you can split it into small modules **/
   componentsRouter,
   chartsRouter,
