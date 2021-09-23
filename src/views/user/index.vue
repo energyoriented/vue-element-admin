@@ -2,33 +2,27 @@
   <div class="app-container">
     <div class="control-container">
       <el-button icon="el-icon-plus" size="mini" type="primary">
-        添加平台
+        添加用户
       </el-button>
     </div>
 
     <!-- Note that row-key is necessary to get a correct row order. -->
     <el-table ref="dragTable" v-loading="listLoading" :data="list" row-key="id" border fit highlight-current-row style="width: 100%">
-      <el-table-column align="center" label="平台" width="65">
+      <el-table-column align="center" label="用户名" width="65">
         <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
+          <span>{{ row.username }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column min-width="350" align="left" label="推流地址">
+      <el-table-column min-width="110" align="center" label="密码">
         <template slot-scope="{row}">
-          <span>{{ row.address }}</span>
+          <span>{{ row.password }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="110" label="分辨率">
+      <el-table-column width="110" label="权限">
         <template slot-scope="{row}">
-          <span>{{ row.resolution }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column width="110" align="center" label="码率">
-        <template slot-scope="{row}">
-          <span>{{ row.rate }}</span>
+          <span>{{ row.role }}</span>
         </template>
       </el-table-column>
 
@@ -37,48 +31,16 @@
           <span>删除</span>
         </template>
       </el-table-column>
-
-      <!-- <el-table-column width="100px" label="Importance">
-        <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="icon-star" />
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="Readings" width="95">
-        <template slot-scope="{row}">
-          <span>{{ row.pageviews }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column class-name="status-col" label="Status" width="110">
-        <template slot-scope="{row}">
-          <el-tag :type="row.status | statusFilter">
-            {{ row.status }}
-          </el-tag>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="Drag" width="80">
-        <template slot-scope="{}">
-          <svg-icon class="drag-handler" icon-class="drag" />
-        </template>
-      </el-table-column> -->
     </el-table>
-    <!-- <div class="show-d">
-      <el-tag>The default order :</el-tag> {{ oldList }}
-    </div>
-    <div class="show-d">
-      <el-tag>The after dragging order :</el-tag> {{ newList }}
-    </div> -->
   </div>
 </template>
 
 <script>
-import { fetchPlatList } from '@/api/platform'
+import { fetchUserList } from '@/api/user'
 import Sortable from 'sortablejs'
 
 export default {
-  name: 'Platform',
+  name: 'UserList',
   filters: {
     statusFilter(status) {
       const statusMap = {
@@ -109,7 +71,7 @@ export default {
   methods: {
     async getList() {
       this.listLoading = true
-      const { data } = await fetchPlatList(this.listQuery)
+      const { data } = await fetchUserList(this.listQuery)
       this.list = data.items
       this.total = data.total
       this.listLoading = false
