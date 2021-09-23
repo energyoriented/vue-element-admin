@@ -1,11 +1,22 @@
 <template>
   <div class="navbar">
-    <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" /> -->
 
-    <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
+    <!-- <breadcrumb id="breadcrumb-container" class="breadcrumb-container" /> -->
+    <div class="identity-container">
+      <span>
+        <i class="el-icon-user-solid" />
+        {{ name }}
+      </span>
+    </div>
 
     <div class="right-menu">
-      <template v-if="device!=='mobile'">
+      <div class="logout-container right-menu-item hover-effect" @click.native="logout">
+        <span>
+          注销
+        </span>
+      </div>
+      <!-- <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
 
         <error-log class="errLog-container right-menu-item hover-effect" />
@@ -16,9 +27,9 @@
           <size-select id="size-select" class="right-menu-item hover-effect" />
         </el-tooltip>
 
-      </template>
+      </template> -->
 
-      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
+      <!-- <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
@@ -40,31 +51,32 @@
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown>
+      </el-dropdown> -->
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-import ErrorLog from '@/components/ErrorLog'
-import Screenfull from '@/components/Screenfull'
-import SizeSelect from '@/components/SizeSelect'
-import Search from '@/components/HeaderSearch'
+// import Breadcrumb from '@/components/Breadcrumb'
+// import Hamburger from '@/components/Hamburger'
+// import ErrorLog from '@/components/ErrorLog'
+// import Screenfull from '@/components/Screenfull'
+// import SizeSelect from '@/components/SizeSelect'
+// import Search from '@/components/HeaderSearch'
 
 export default {
-  components: {
-    Breadcrumb,
-    Hamburger,
-    ErrorLog,
-    Screenfull,
-    SizeSelect,
-    Search
-  },
+  // components: {
+  //   Breadcrumb,
+  //   Hamburger,
+  //   ErrorLog,
+  //   Screenfull,
+  //   SizeSelect,
+  //   Search
+  // },
   computed: {
     ...mapGetters([
+      'name',
       'sidebar',
       'avatar',
       'device'
@@ -89,6 +101,18 @@ export default {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
+
+  .identity-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    margin-left: 20px;
+    font-size: 18px;
+
+    i {
+      font-size: 22px;
+    }
+  }
 
   .hamburger-container {
     line-height: 46px;
@@ -119,6 +143,10 @@ export default {
 
     &:focus {
       outline: none;
+    }
+
+    .logout-container {
+      margin-right: 50px;
     }
 
     .right-menu-item {
