@@ -198,6 +198,19 @@ export const asyncRoutes = [
   },
 
   {
+    path: '/record',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/record/index'),
+        name: 'Record',
+        meta: { title: '转推记录', noCache: true }
+      }
+    ]
+  },
+
+  {
     path: '/user',
     component: Layout,
     children: [

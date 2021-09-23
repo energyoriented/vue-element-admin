@@ -34,7 +34,7 @@
 
       <el-table-column width="110px" align="center" label="操作">
         <template slot-scope="{}">
-          <span>删除</span>
+          <span style="color:red;">删除</span>
         </template>
       </el-table-column>
 
