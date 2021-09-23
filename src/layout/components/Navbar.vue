@@ -11,9 +11,9 @@
     </div>
 
     <div class="right-menu">
-      <div class="logout-container right-menu-item hover-effect" @click.native="logout">
+      <div class="logout-container right-menu-item hover-effect">
         <span>
-          注销
+          <el-button type="primary" style="width:100%;margin-bottom:30px;" @click.native="logout">注销</el-button>
         </span>
       </div>
       <!-- <template v-if="device!=='mobile'">
